@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja-jp"> 
+<head>
+	<meta charset="UTF-8">
+	<meta name="referrer" content="always">
+	<title>リアルタイム 地震 世界で4.5を超える地震|日本|台湾 </title>
+	<meta name="apple-mobile-web-app-capable" content="yes"><!--Apple MiniApp-->
+	<link rel="shortcut icon" href="../images/Hello.ico">
+	<link rel="shortcut icon" href="http://ailpcc.github.io/images/Hello.ico">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link href='https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.css' rel='stylesheet'/>
+	<link href="http://ailpcc.github.io/images/ICON0328.jpg" rel="apple-touch-icon-precomposed">
+	<link href="http://ailpcc.github.io/images/ICON0328.jpg" sizes="114x114" rel="apple-touch-icon-precomposed">
+	<script src='https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js'></script>
+	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<style>
+		.leaflet-container {
+			height: 400px;
+			width: 600px;
+			max-width: 100%;
+			max-height: 100%;
+		}
+        .mapboxgl-popup-content {padding:10px; background:rgba(0,0,0,0.75); color:#fff; pointer-events:none; opacity: 0.7;}
+        .scroller{
+            position:absolute;
+            top:87px;
+            bottom:0px;
+            overflow:scroll;
+        }
+        .mapboxgl-popup-anchor-bottom {margin-top:-10px;}
+        .mapboxgl-popup-anchor-top {margin-top:10px;}
+        .mapboxgl-popup-anchor-left {margin-right:-10px;}
+        .mapboxgl-popup-anchor-right {margin-right:10px;}
+
+        .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {border-top-color:rgba(0,0,0,0.75); }
+        .mapboxgl-popup-anchor-top .mapboxgl-popup-tip {border-bottom-color:rgba(0,0,0,0.75); }
+        .mapboxgl-popup-anchor-left .mapboxgl-popup-tip {border-right-color:rgba(0,0,0,0.75);}
+        .mapboxgl-popup-anchor-right .mapboxgl-popup-tip {border-left-color:rgba(0,0,0,0.75);}
+
+        .mapboxgl-ctrl-group {
+            -webkit-filter: invert(100%);
+        }
+        .mapboxgl-popup {pointer-events:none;}
+        h1.mag {
+            margin-right:10px;
+            color:steelblue;
+        }
+    </style>
+</head>
+<body>
+	<div id="li">
+		<div>
+			<ul>
+				<li id="li-0">
+					<div id="font">
+					<a id="li-back" href="http://ailpcc.github.io"><p id="p-back">ホームページに戻る</p></a>
+					</div>
+				</li>	
+				<li id="li-1">
+					<div id="li-2"></div>
+						<a id="li-back" href="https://qun.qq.com/qqweb/qunpro/share?_wv=3&_wwv=128&appChannel=share&inviteCode=nh8sE&appChannel=share&contentID=KAQT&businessType=2&from=246610&biz=ka&shareSource=5
+"><p id="">About(説明)</p></a>
+				</li>
+					</div>
+			</ul>
+		</div>
+	</div>
+		<div id="line">
+		</div>
+	<div id="body-diary">
+		<div id="" style="background-color:rgb(232,232,232)">
+		<div id="body-title">
+			<h2>リアルタイム 地震 世界でM4.5を超える地震  | 日本 | 台湾 | 中国 </h2>
+		</div>
+		<div id="line-2">
+		</div>
+		<div style=""><!--居中-->
+		<div>
+		<div>
+			<p>---- 世界 ---- (from USGS M≥4.5)</p>
+
+	<div id='map' style="width: 900px; height: 600px;"></div>
+
+	<script>
+
+		// popup
+		//     .setLngLat(coords)
+		//     .setHTML('<h2 class="fl mag">'+feature.properties.mag.toFixed(1)+'</h2>'+feature.properties.place+'<br><span class="italic block translucent">'+feature.properties.depth+' km depth ('+ expressTime(feature.properties.time)[0]+' '+expressTime(feature.properties.time)[1]+' ago)</span>')
+		//     .addTo(map);
+		//
+		// var coords = feature.geometry.coordinates.map(function(num){
+		//     if (num>180) return num%180
+		//     else return num
+		// });
+	
+	
+	mapboxgl.accessToken = 'pk.eyJ1IjoicHBxdWFrZSIsImEiOiJja3pwOXd2Z2w1eTBkMnFwcnc5c3ByYjJqIn0.EWTHDE0h0a100w8qbrf5Rg';
+	var map = new mapboxgl.Map({
+	container: 'map',
+	style: 'mapbox://styles/ppquake/ckzr7jkiu002a14pa4beb6mno',
+	center: [104.04, 30.39],
+	zoom: 3
+	});
+	
+		var a = 104.04
+		var b = 30.39
+		var marker2 = new mapboxgl.Marker({ color: 'red', scale: 0.8 })
+		var popup = new mapboxgl.Popup({
+			closeButton: false,
+			closeOnClick: false
+		});
+		function expressTime(time){
+			var msElapsed = Date.now() - time;
+			if (msElapsed<60000*1.5) return [(msElapsed/1000).toFixed(0), 'sec']
+			if (msElapsed<3600000*1.5) return [(msElapsed/60000).toFixed(0), 'min']
+			if (msElapsed<86400000*1.5) return [(msElapsed/3600000).toFixed(0), 'hrs']
+			else return [(msElapsed/86400000).toFixed(0), 'days']
+		}
+	
+	<!--document.getElementById('fly').addEventListener('click', function () {-->
+	<!--// Fly to a random location by offsetting the point -74.50, 40-->
+	<!--// by up to 5 degrees.-->
+	
+	window.setInterval(function() {
+	
+		$.getJSON('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson',function(data) {
+			a = data.features[0].geometry.coordinates[0]
+			b = data.features[0].geometry.coordinates[1]
+			map.flyTo({
+				center: [
+					a, b]
+			});
+			marker2.setLngLat([a, b]).addTo(map);
+			popup
+				.setLngLat([a, b])
+				// .setHTML('<h3 class="fl mag">'+data.features[0].properties.title+'</h3>'+'</span>')
+				// .setHTML('<h1 class="fl mag">'+'M'+data.features[0].properties.mag+'</h1>'+data.features[0].properties.place+'<br><span class="italic block translucent">'+'</span>')
+				.setHTML('<h1 class="fl mag">'+'M'+data.features[0].properties.mag.toFixed(1)+'</h1>'+data.features[0].properties.place+'<br><span class="italic block translucent">'+'('+ expressTime(data.features[0].properties.time)[0]+' '+expressTime(data.features[0].properties.time)[1]+' ago)</span>')
+				.addTo(map);
+		});
+	
+	
+	
+	
+	}, 10000);
+	
+	
+	
+	
+	<!--});-->
+	</script>
+
+		
+
+
+		</div><br>
+		
+		<div id="line">
+            </div>
+		
+		<div><br>
+	<P>---- China 中国 ----</p>
+		<iframe src="https://news.ceic.ac.cn" width="750" height="665" frameborder="0" scrolling="no" id="cencmap"></iframe>
+		<iframe src="https://bousai.cn/CENCEQList/index.html" width="300" height="366" frameborder="0" scrolling="no" id="cenceqinfo"></iframe>
+		
+		</div>
+		
+		<div><br>
+	<p>---- Taiwan 中国台湾 ----</p>
+		<div id="iframe"><p style="font-size:auto"><a href="https://www.cwb.gov.tw/V8/C/E/index.html">(CWB)台湾での最近の地震（クリックしてサードパーティにジャンプ）</a></P>
+		<iframe name="I1" width="400" height="635" scrolling="no" border="0" frameborder="0" align="center" src="https://www.cwb.gov.tw/V8/C/E/index.html" marginheight="1" marginwidth="1"></iframe></div>
+		
+		<P><a href="https://youtu.be/fyHXNp2gtIY">台灣地震監視(地震速報、強震即時警報)クリックしてYoutubeライブルーム「台灣地震監視」にジャンプ</a></P>
+		
+		</div>
+			<div>
+				 <br><p>merry-link</p>
+				 <iframe name="I1" width="850" height="320" scrolling="no" border="0" frameborder="0" align="center" src="https://drd.merry-link.com/CodeIgniter-3.1.5/index.php/web_user/notice?session_id=9e5dda9b40a43a33fb4d1eee4ac7a6d570f3ce1a&device=2&ugid=A85BC479-BE6D-438C-8A2D-F2D651D0EA02#
+" marginheight="1" marginwidth="1"></iframe>
+			</div>
+			
+			<div><br>
+<iframe  width="900" height="545"  border="0" frameborder="0" align="center" src="Taiwan_earthquake_monitoring_station.html" marginheight="1" marginwidth="1"></iframe>
+			</div>
+			
+			</div></div>
+			<div>
+				<div><br>
+		<div id="line">
+		</div>
+		</div>
+
+				 <br>
+				<p style="">---- JAPAN 日本 ----</p>
+            <br>
+			<iframe width="985px" height="800" src="Japan_all.html" border="0" frameborder="0" align="center"marginheight="1" marginwidth="1"></iframe>
+
+</div><br>
+	<div id="line-2"></div>
+			<div style="text-align:left">Youtuber<br>
+	日本全国 緊急地震速報ライブ
+			<div style="width:560px;height:315px">
+				<iframe width="560px" height="390" src="https://www.youtube.com/embed/tcRvI1rSokk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</div>
+			<BR><BR><BR><BR>
+					JQuake Live<BR><BR>
+				<div style="width:560px;height:315px">
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/z--rbRvXOSs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--use-->
+</body>
+</html>
