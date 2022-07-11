@@ -4,7 +4,7 @@
 	}
 	
 a{
-	text-decoration:none;/*È¥µôA±êÇ©µÄÏÂ»®Ïß*/
+	text-decoration:none;/*È¥ï¿½ï¿½Aï¿½ï¿½Ç©ï¿½ï¿½ï¿½Â»ï¿½ï¿½ï¿½*/
 	color:rgb(0,0,0);
 	}
 li{
@@ -19,7 +19,7 @@ ul{
 	background:red;
 }
 #line-2{
-	background-color:rgb(255,255,255);
+	background-color:rgb(44, 30, 30);
 	width:100%;
 	height:3px;
 }
@@ -35,8 +35,7 @@ ul{
 }
 
 #body-diary{
-	background-color:rgb(232,232,232);
-	width:95%;
+	width:85%;
 	padding:0 25px 25px 25px;
 	margin-top:5px;
 	margin-left: auto;
@@ -44,7 +43,7 @@ ul{
 }
 h2{
 	font-family:Microsoft YaHei UI Light;
-	text-align:center
+	text-align:center;
 }
 #iframe-RMT{
 	width:AUTO;
@@ -66,6 +65,4 @@ h2{
 }
 .earthquakeMonitor_mod{
 	text-align:center;
-	
-	
 }
