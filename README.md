@@ -49,3 +49,7 @@ Yahoo Japan 日本雅虎地震监测：
 <a href="https://typhoon.yahoo.co.jp/weather/jp/earthquake/kyoshin/">リアルタイム震度（強震モニタ）</a>
 
 ---
+
+
+## 免责声明
+本开源项目仅供知识科普、学习交流使用，不涉及任何 机构/私企 等的知识产权。信息源均由用户自主填写，与项目开发者无关。
